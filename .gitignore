@@ -1,0 +1,22 @@
+# OS junk
+Thumbs.db
+.DS_Store
+
+# Logs and temp
+*.log
+*.tmp
+*.cache
+
+# Build outputs
+dist/
+build/
+
+# Dependency directories
+node_modules/
+
+# IDE
+.vscode/
+.idea/
+
+# Python http.server cache
+__pycache__/

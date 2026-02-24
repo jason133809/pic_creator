@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>图片字幕生成器</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <h1>图片字幕生成器</h1>
+    </header>
+    <main class="app-main">
+      <section class="panel left">
+        <div class="card">
+          <h2>上传图片</h2>
+          <div class="upload">
+            <input type="file" id="fileInput" accept=".jpg,.jpeg,.png,.webp">
+            <div class="hint">支持 JPG/PNG/WebP，最大边 ≤ 4096</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>字幕设置</h2>
+          <div class="form">
+            <div class="field">
+              <label for="subtitleHeight">字幕高度</label>
+              <div class="control">
+                <input type="range" id="subtitleHeight" min="40" max="400" step="2" value="80">
+                <input type="number" id="subtitleHeightNum" min="40" max="400" step="2" value="80"> 
+                <span class="unit">px</span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="stripeGap">分条间距</label>
+              <div class="control">
+                <input type="range" id="stripeGap" min="0" max="12" step="1" value="2">
+                <input type="number" id="stripeGapNum" min="0" max="12" step="1" value="2">
+                <span class="unit">px</span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="fontSize">字体大小</label>
+              <div class="control">
+                <input type="range" id="fontSize" min="18" max="96" step="1" value="40">
+                <input type="number" id="fontSizeNum" min="18" max="96" step="1" value="40">
+                <span class="unit">px</span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="opacity">遮罩透明度</label>
+              <div class="control">
+                <input type="range" id="opacity" min="0.3" max="0.8" step="0.01" value="0.5">
+                <input type="number" id="opacityNum" min="0.3" max="0.8" step="0.01" value="0.5">
+              </div>
+            </div>
+            <div class="field">
+              <label for="stripeLineWidth">分隔线粗细</label>
+              <div class="control">
+                <input type="range" id="stripeLineWidth" min="0" max="3" step="0.5" value="1">
+                <input type="number" id="stripeLineWidthNum" min="0" max="3" step="0.5" value="1">
+                <span class="unit">px</span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="stripeLineColor">分隔线颜色</label>
+              <div class="control">
+                <input type="color" id="stripeLineColor" value="#ffffff">
+                <input type="text" id="stripeLineColorHex" value="#FFFFFF">
+              </div>
+            </div>
+            <div class="field">
+              <label for="fontColor">字体颜色</label>
+              <div class="control">
+                <input type="color" id="fontColor" value="#ffffff">
+                <input type="text" id="fontColorHex" value="#FFFFFF">
+              </div>
+            </div>
+            <div class="field">
+              <label for="strokeColor">轮廓颜色</label>
+              <div class="control">
+                <input type="color" id="strokeColor" value="#000000">
+                <input type="text" id="strokeColorHex" value="#000000">
+              </div>
+            </div>
+            <div class="field">
+              <label for="fontFamily">字体样式</label>
+              <div class="control">
+                <select id="fontFamily">
+                  <option value="Microsoft YaHei, PingFang SC, Noto Sans SC, Arial">微软雅黑</option>
+                  <option value="PingFang SC, Microsoft YaHei, Noto Sans SC, Arial">苹方</option>
+                  <option value="Noto Sans SC, Microsoft YaHei, Arial">思源黑体</option>
+                  <option value="Arial, Helvetica, Microsoft YaHei, Noto Sans SC">Arial</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="fontWeight">字体粗细</label>
+              <div class="control">
+                <select id="fontWeight">
+                  <option value="normal">正常</option>
+                  <option value="bold">加粗</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>字幕内容</h2>
+          <textarea id="subtitleText" rows="7" placeholder="请输入字幕内容，回车换行" maxlength="500"></textarea>
+          <div class="actions">
+            <button id="generateBtn" class="btn primary">生成字幕图片</button>
+            <button id="saveBtn" class="btn">保存图片</button>
+          </div>
+          <div id="statusBar" class="status"></div>
+        </div>
+      </section>
+
+      <section class="panel right">
+        <div class="preview">
+          <canvas id="canvas"></canvas>
+          <div id="emptyState" class="empty">请先上传图片</div>
+        </div>
+      </section>
+    </main>
+    <footer class="app-footer">
+      <div>本地处理，不上传任何数据</div>
+    </footer>
+  </div>
+  <script src="./app.js"></script>
+</body>
+</html>
